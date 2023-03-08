@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import MobileLayout from "../../layouts/MobileLayout";
 import FeatherIcon from "feather-icons-react/build/FeatherIcon";
 import Send from "../../assets/send.svg";
@@ -10,12 +11,16 @@ const ChatBox = () => {
     var objDiv = document.getElementById("messages");
     objDiv.scrollTop = objDiv.scrollHeight;
   }, []);
+  const navigate = useNavigate();
 
   return (
     <MobileLayout>
       <header className="flex items-center justify-between py-5 w-11/12 m-auto h-[10vh]">
         <div className="flex items-center">
-          <FeatherIcon className=" mr-1 h-8 w-9" icon="chevron-left" />
+          <div onClick={() => navigate(-1)}>
+            <FeatherIcon className=" mr-1 h-8 w-9" icon="chevron-left" />
+          </div>
+
           <div className="flex items-center">
             <img
               src={"https://www.w3schools.com/w3css/img_avatar3.png"}

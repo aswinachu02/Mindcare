@@ -17,6 +17,7 @@ import Confirmation from "./presentation/pages/Confirmation";
 import Chats from "./presentation/pages/Chats";
 import ChatBox from "./presentation/pages/ChatBox";
 import Login from "./presentation/pages/Login";
+import Onboarding from "./presentation/pages/Onboarding";
 
 const App = () => {
   return (
@@ -38,6 +39,7 @@ const App = () => {
         <Route path="/chat" element={<Chats />} />
         <Route path="/chatbox" element={<ChatBox />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/onboarding" element={<Onboarding />} />
       </Routes>
     </Router>
   );

@@ -7,8 +7,8 @@ import Button from "../Button";
 
 const LoginExplore = ({ setState }) => {
   const navigate = useNavigate();
-  const homepath = () => {
-    navigate("/home");
+  const onboardingpath = () => {
+    navigate("/onboarding");
   };
   const [otp, setotp] = useState("");
   const handleFocusChange = (currVal, nextId) => {
@@ -69,10 +69,12 @@ const LoginExplore = ({ setState }) => {
         </div>
         <div className=" w-[288px] mt-6 text-xs flex items-center justify-between">
           <p className="text-[#404252]">Code send to +91 1234567890 </p>
-          <p className=" text-[#273E56] font-medium">Send Again(29s)</p>
+          <p className=" text-[#273E56] font-medium underline underline-offset-2">
+            Send Again(29s)
+          </p>
         </div>
         <Button
-          onClick={homepath}
+          onClick={onboardingpath}
           className=" flex items-center justify-center w-[325px] text-sm font-medium mt-[52px]"
           type="solid"
         >

@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MobileLayout from "../../layouts/MobileLayout";
 import SessionCard from "../../components/SessionCard";
 import Footer from "../../components/Footer";
+import { useAuthStore, useSessionsStore } from "../../stores";
+import { Spin } from "antd";
 
 const Sessions = () => {
+  const [{ username }] = useAuthStore();
+  const [{ loading, sessions }, { handleListSessions }] = useSessionsStore();
+
+  useEffect(() => {
+    if (sessions === null) handleListSessions(username);
+  }, [sessions]);
+
   return (
     <MobileLayout>
       <h2 className="my-4 w-11/12 m-auto text-lg font-medium text-[#282A39]">
@@ -19,12 +28,13 @@ const Sessions = () => {
       </div>
 
       <div className="flex flex-col items-center mb-[80px]">
-        <SessionCard />
-        <SessionCard />
-        <SessionCard />
-        <SessionCard />
-        <SessionCard />
-        <SessionCard />
+        {loading ? (
+          <Spin />
+        ) : (
+          sessions?.map((session, id) => (
+            <SessionCard id={sessions.length - id} session={session} />
+          ))
+        )}
       </div>
       <Footer />
     </MobileLayout>

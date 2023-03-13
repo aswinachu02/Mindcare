@@ -12,7 +12,11 @@ const OutgoingMessages = ({ children, time = "" }) => {
           <p className=" text-[#404252] text-[11px] mx-[6px] mb-1 text-right">
             {time}
           </p>
-          <img src={Recieved} className="w-[12px] h-[7px] mr-[6px] mb-1" />
+          <img
+            alt="recieved"
+            src={Recieved}
+            className="w-[12px] h-[7px] mr-[6px] mb-1"
+          />
         </div>
       </div>
     </div>

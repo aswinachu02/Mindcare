@@ -21,15 +21,16 @@ const Therapist = () => {
       <div className=" flex w-auto  min-h-[250px] p-[25px]  ">
         <div className="flex-[1] flex-col ">
           <img
+            alt="therapist"
             src="https://www.w3schools.com/w3css/img_avatar3.png"
             className="rounded-full h-[137px] w-[137px]"
           />
           <div className="flex w-[100px] ml-4 h-[27px] my-3 items-center justify-around  text-xs font-medium border-[1px] border-themeColor rounded-full">
             <p className="flex items-center">
               4.3
-              <img src={Star} className=" ml-[2px] w-3 h-3 " />
+              <img alt="star" src={Star} className=" ml-[2px] w-3 h-3 " />
             </p>
-            <img src={Line} className=" h-5" />
+            <img alt="line" src={Line} className=" h-5" />
             <h1 className="text-[#9396A0]">55</h1>
           </div>
         </div>
@@ -40,7 +41,7 @@ const Therapist = () => {
             <p className=" font-medium pt-2 text-xs text-[#101A24] ">
               65 <span className="text-[#777A86]">SESSIONS COMPLETED</span>
             </p>
-            <img src={Badge} className="mt-[6px] ml-1 w-3 h-3" />
+            <img alt="badge" src={Badge} className="mt-[6px] ml-1 w-3 h-3" />
           </div>
           <p className=" text-[#777A86] text-xs font-normal">
             Starting at{" "}
@@ -61,20 +62,20 @@ const Therapist = () => {
           h3={<h3>Next Available at</h3>}
           p={<p>January 20, 2023, 10:00 AM</p>}
         >
-          <img src={Clock} />
+          <img alt="clock" src={Clock} />
         </DetailsCard>
 
         <DetailsCard
           h3={<h3>Qualification</h3>}
           p={<p>MA in Counselling Psychology</p>}
         >
-          <img src={Qual} />
+          <img alt="qual" src={Qual} />
         </DetailsCard>
         <DetailsCard
           h3={<h3>Languages spoken</h3>}
           p={<p>English, Hindi, Malayalam</p>}
         >
-          <img src={Lang} />
+          <img alt="lang" src={Lang} />
         </DetailsCard>
         <DetailsCard
           h3={<h3>Specializations</h3>}
@@ -87,7 +88,7 @@ const Therapist = () => {
             </p>
           }
         >
-          <img src={Spec} />
+          <img alt="spec" src={Spec} />
         </DetailsCard>
         <DetailsCard
           h3={<h3>About</h3>}
@@ -103,7 +104,7 @@ const Therapist = () => {
             </p>
           }
         >
-          <img src={About} />
+          <img alt="about" src={About} />
         </DetailsCard>
       </div>
 

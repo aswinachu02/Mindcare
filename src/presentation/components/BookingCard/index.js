@@ -17,6 +17,7 @@ const BookingCard = () => {
     <div className="w-11/12 min-h-[250px] p-[25px] my-4 rounded-lg shadow-lg bg-[#F9F2E8]">
       <header className="flex items-center">
         <img
+          alt="doctor"
           src="https://www.w3schools.com/w3css/img_avatar3.png"
           className="rounded-full h-[64px] w-[64px]"
         />
@@ -26,9 +27,9 @@ const BookingCard = () => {
             <div className="flex w-[100px] pl-4 items-center justify-around  text-xs font-medium">
               <p className="flex items-center">
                 4.3
-                <img src={Star} className=" ml-[2px] w-3 h-3 " />
+                <img alt="star" src={Star} className=" ml-[2px] w-3 h-3 " />
               </p>
-              <img src={Line} className=" h-5" />
+              <img alt="line" src={Line} className=" h-5" />
               <h1 className="text-[#9396A0]">55</h1>
             </div>
           </div>
@@ -39,7 +40,11 @@ const BookingCard = () => {
             <p className=" font-medium pt-2 text-xs text-[#777A86]">
               SESSIONS COMPLETED <span className="text-[#101A24]">65</span>
             </p>
-            <img src={Badge} className="mt-[6px] ml-2 w-3 h-3"></img>
+            <img
+              alt="badge"
+              src={Badge}
+              className="mt-[6px] ml-2 w-3 h-3"
+            ></img>
           </div>
         </div>
       </header>

@@ -7,6 +7,7 @@ import session from "../../assets/session.svg";
 import chat from "../../assets/chat.svg";
 import profile from "../../assets/profile.svg";
 import { Link } from "react-router-dom";
+import routes from "../../utils/routes";
 
 export const Footer = () => {
   return (
@@ -14,51 +15,52 @@ export const Footer = () => {
       <div className="flex flex-col items-center">
         <Link to={window.location.pathname === "/home" ? null : "/home"}>
           <img
+            alt="home"
             src={window.location.pathname === "/home" ? homeiconbold : homeicon}
             className=" w=[30px] h-[30px]"
           />
         </Link>
 
-        <p className=" text-xs font-semibold">HOME</p>
+        <p className="cursor-pointer text-xs font-semibold">HOME</p>
       </div>
       <div className="flex flex-col items-center">
         <Link
           to={
-            window.location.pathname === "/upcomingsessions"
+            window.location.pathname === routes.SESSIONS
               ? null
-              : "/upcomingsessions"
+              : routes.SESSIONS
           }
         >
           <img
+            alt="sessions"
             src={
-              window.location.pathname === "/upcomingsessions"
+              window.location.pathname === routes.SESSIONS
                 ? sessionbold
                 : session
             }
             className=" w=[30px] h-[30px]"
           />
         </Link>
-
-        <p className=" text-xs font-light">SESSIONS</p>
+        <p className="cursor-pointer text-xs font-light">SESSIONS</p>
       </div>
       <div className="flex flex-col items-center">
         <Link to={window.location.pathname === "/chat" ? null : "/chat"}>
           <img
+            alt="chats"
             src={window.location.pathname === "/chat" ? chatbold : chat}
             className=" w=[30px] h-[30px]"
           />
         </Link>
 
-        <p className=" text-xs font-light">CHATS</p>
+        <p className="cursor-pointer text-xs font-light">CHATS</p>
       </div>
       <div className="flex flex-col items-center">
         <img
-          src={
-            window.location.pathname === "/upcomingsessions" ? profile : profile
-          }
+          alt="profile"
+          src={window.location.pathname === routes.SESSIONS ? profile : profile}
           className=" w=[30px] h-[30px]"
         />
-        <p className=" text-xs font-light">PROFILE</p>
+        <p className="cursor-pointer text-xs font-light">PROFILE</p>
       </div>
     </div>
   );

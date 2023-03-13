@@ -9,14 +9,18 @@ import Smile from "../../assets/Smile.svg";
 import SessionCard from "../../components/SessionCard";
 import Footer from "../../components/Footer";
 import { Link } from "react-router-dom";
+import { useAuthStore } from "../../stores";
+import { capitalize } from "../../utils/string";
 
 const Home = () => {
+  const [{ username }] = useAuthStore();
+
   return (
     <MobileLayout>
       <div className="flex justify-between w-auto  min-h-[240px] p-[25px] bg-[#F9F2E8]">
         <div className="flex flex-col text-xl font-medium mt-4">
           <h2>Good Morning,</h2>
-          <h2>Sanvi Mittal!</h2>
+          <h2>{capitalize(username)}!</h2>
           <p className=" text-xs font-light text-[#282A39] mt-2 mb-5">
             Feel like talking?
           </p>
@@ -26,7 +30,7 @@ const Home = () => {
             </Button>
           </Link>
         </div>
-        <img src={HomeImage} className="w-[180px] h-[156px]" />
+        <img src={HomeImage} alt="home" className="w-[180px] h-[156px]" />
       </div>
 
       <div className="flex flex-col p-[25px]">
@@ -35,16 +39,16 @@ const Home = () => {
           Identify and track your emotions
         </p>
         <div className=" flex items-center justify-evenly w-auto p-[25px] my-4 rounded-lg shadow-lg">
-          <img src={Sad} />
-          <img src={Meh} />
-          <img src={Emoji} />
-          <img src={Smile} />
-          <img src={Happy} />
+          <img src={Sad} alt="sad" />
+          <img src={Meh} alt="meh" />
+          <img src={Emoji} alt="emoji" />
+          <img src={Smile} alt="smile" />
+          <img src={Happy} alt="happy" />
         </div>
       </div>
 
       <div className="flex flex-col ">
-        <h2 className=" text-lg font-medium px-[25px] ">Today’s Sessions</h2>
+        <h2 className=" text-lg font-medium px-[25px] ">Today's Sessions</h2>
         <div className="flex justify-center">
           <SessionCard />
         </div>

@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "./presentation/pages/Home";
-import Landing from "./presentation/pages/Landing";
 import Sessions from "./presentation/pages/Sessions";
 import Booking from "./presentation/pages/Booking";
 import Filter from "./presentation/pages/Filterpage";

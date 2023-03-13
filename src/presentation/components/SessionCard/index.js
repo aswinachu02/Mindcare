@@ -18,6 +18,7 @@ const SessionCard = ({ session, id, isbooked }) => {
     <div className="w-11/12 min-h-[200px] p-[25px] my-4 rounded-lg shadow-lg bg-[#F9F2E8]">
       <header className="flex items-center">
         <img
+          alt="doctor"
           src="https://www.w3schools.com/w3css/img_avatar3.png"
           className="rounded-full h-[50px] w-[50px]"
         />

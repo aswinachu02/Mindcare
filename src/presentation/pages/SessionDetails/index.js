@@ -137,7 +137,7 @@ const SessionDetails = () => {
         </DetailsCard>
       </div>
 
-      <div className="flex flex-col w-auto p-[25px]  mb-9 bg-[#F9F2E8]">
+      <div className="flex flex-col w-auto p-[25px]  bg-[#F9F2E8]">
         <div className="flex items-center justify-between mb-2">
           <h2 className=" text-base font-medium">Reviews and Ratings</h2>
           <span className="text-[#EC7E41] px-2 text-xs">

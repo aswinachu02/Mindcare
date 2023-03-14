@@ -16,7 +16,11 @@ const LoginExplore = ({ select, setState }) => {
             Skip
           </p>
         </div>
-        <img src={privacy} className="mt-[142px] w-[198px] h-[179px]" />
+        <img
+          alt="privacy"
+          src={privacy}
+          className="mt-[142px] w-[198px] h-[179px]"
+        />
         <h2 className=" text-[#000000] text-[22px] mt-[49px]">
           Your Privacy is our Priority
         </h2>

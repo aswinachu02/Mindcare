@@ -2,8 +2,10 @@ import React from "react";
 import Button from "../Button";
 import FeatherIcon from "feather-icons-react";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
+import { capitalize } from "../../utils/string";
 
-const SessionCard = ({ isbooked }) => {
+const SessionCard = ({ session, id, isbooked }) => {
   let navigate = useNavigate();
   const reschedulepath = () => {
     navigate("/reschedule");
@@ -16,19 +18,21 @@ const SessionCard = ({ isbooked }) => {
     <div className="w-11/12 min-h-[200px] p-[25px] my-4 rounded-lg shadow-lg bg-[#F9F2E8]">
       <header className="flex items-center">
         <img
+          alt="doctor"
           src="https://www.w3schools.com/w3css/img_avatar3.png"
           className="rounded-full h-[50px] w-[50px]"
         />
         <div className="flex-1 ml-3">
           <div className="flex items-center justify-between">
-            <h2 className="text-base font-medium">John Doe</h2>
+            <h2 className="text-base font-medium">
+              {capitalize(session?.d_uname)}
+            </h2>
             <div className="text-xs">
-              Session <span className="text-success">#3</span>
+              Session <span className="text-success">#{id}</span>
             </div>
           </div>
           <p className="text-xs mt-1">
-            January <span className="font-medium">20</span>, 2023,{" "}
-            <span className="font-medium">10:00 AM</span>
+            {moment(session?.stamp).format("MMMM DD, YYYY, hh:mm A")}
           </p>
         </div>
       </header>

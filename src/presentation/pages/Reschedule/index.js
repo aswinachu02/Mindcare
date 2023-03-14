@@ -18,6 +18,7 @@ const Reschedule = () => {
       <div className="w-full  p-[25px] my-4 ">
         <header className="flex items-start">
           <img
+            alt="doctor"
             src="https://www.w3schools.com/w3css/img_avatar3.png"
             className="rounded-full h-[64px] w-[64px]"
           />

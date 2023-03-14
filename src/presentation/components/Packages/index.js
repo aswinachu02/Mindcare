@@ -24,7 +24,11 @@ const Packages = ({
           ) : null}
         </div>
         <div className="flex items-center">
-          <img src={Percentage} className="mr-[5px] w-[13px] h-[13]" />
+          <img
+            alt="percentage"
+            src={Percentage}
+            className="mr-[5px] w-[13px] h-[13]"
+          />
           <p className=" text-xs font-medium text-[#404252]">
             {percentage}% OFF
           </p>

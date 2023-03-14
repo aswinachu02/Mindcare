@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "./presentation/pages/Home";
-import Landing from "./presentation/pages/Landing";
 import Sessions from "./presentation/pages/Sessions";
 import Booking from "./presentation/pages/Booking";
 import Filter from "./presentation/pages/Filterpage";
@@ -25,11 +24,11 @@ const App = () => {
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/" element={<Login />} />
-        <Route path="/upcomingsessions" element={<Sessions />} />
+        <Route path="/sessions" element={<Sessions />} />
         <Route path="/booking" element={<Booking />} />
         <Route path="/filter" element={<Filter />} />
         <Route path="/therapist" element={<Therapist />} />
-        <Route path="/sessions" element={<SessionDetails />} />
+        <Route path="/session" element={<SessionDetails />} />
         <Route path="/slot" element={<Slot />} />
         <Route path="/reschedule" element={<Reschedule />} />
         <Route path="/plan" element={<Plan />} />

@@ -16,7 +16,11 @@ const EndSession = () => {
           Thank you! <br />
           We hope you had a good time.
         </h2>
-        <img src={Thankyou} className=" w-[120px] h-[130px] mx-[15px]" />
+        <img
+          alt="thankyou"
+          src={Thankyou}
+          className=" w-[120px] h-[130px] mx-[15px]"
+        />
       </header>
       <div className="w-full px-[25px] ">
         <h2 className=" text-sm font-medium">Review Time </h2>

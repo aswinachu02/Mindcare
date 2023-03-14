@@ -26,6 +26,7 @@ const SessionDetails = () => {
       <div className="w-full min-h-[200px] p-[25px] my-4 ">
         <header className="flex items-start mb-3">
           <img
+            alt="doctor"
             src="https://www.w3schools.com/w3css/img_avatar3.png"
             className="rounded-full h-[64px] w-[64px]"
           />
@@ -40,14 +41,14 @@ const SessionDetails = () => {
               <p className=" font-medium pt-2 text-xs text-[#101A24] ">
                 65 <span className="text-[#777A86]">SESSIONS COMPLETED</span>
               </p>
-              <img src={Badge} className="mt-[6px] ml-1 w-3 h-3" />
+              <img alt="badge" src={Badge} className="mt-[6px] ml-1 w-3 h-3" />
             </div>
             <div className="flex w-[75px] my-3 items-center justify-around  text-xs font-medium ">
               <p className="flex items-center">
                 4.3
-                <img src={Star} className=" ml-[2px] w-3 h-3 " />
+                <img alt="star" src={Star} className=" ml-[2px] w-3 h-3 " />
               </p>
-              <img src={Line} className=" h-5" />
+              <img alt="line" src={Line} className=" h-5" />
               <h1 className="text-[#9396A0]">55</h1>
             </div>
           </div>
@@ -91,20 +92,20 @@ const SessionDetails = () => {
           h3={<h3>Next Available at</h3>}
           p={<p>January 20, 2023, 10:00 AM</p>}
         >
-          <img src={Clock} />
+          <img alt="clock" src={Clock} />
         </DetailsCard>
 
         <DetailsCard
           h3={<h3>Qualification</h3>}
           p={<p>MA in Counselling Psychology</p>}
         >
-          <img src={Qual} />
+          <img alt="qual" src={Qual} />
         </DetailsCard>
         <DetailsCard
           h3={<h3>Languages spoken</h3>}
           p={<p>English, Hindi, Malayalam</p>}
         >
-          <img src={Lang} />
+          <img alt="lang" src={Lang} />
         </DetailsCard>
         <DetailsCard
           h3={<h3>Specializations</h3>}
@@ -117,7 +118,7 @@ const SessionDetails = () => {
             </p>
           }
         >
-          <img src={Spec} />
+          <img alt="spec" src={Spec} />
         </DetailsCard>
         <DetailsCard
           h3={<h3>About</h3>}
@@ -133,7 +134,7 @@ const SessionDetails = () => {
             </p>
           }
         >
-          <img src={About} />
+          <img alt="about" src={About} />
         </DetailsCard>
       </div>
 

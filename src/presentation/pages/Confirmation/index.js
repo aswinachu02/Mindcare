@@ -9,7 +9,7 @@ export const Confirmation = () => {
   return (
     <MobileLayout>
       <div className="w-full  p-[25px] mb-3">
-        <img src={Successful} />
+        <img alt="successful" src={Successful} />
         <div className="flex flex-col items-center mt-4">
           <h2 className=" text-xl text-success mb-9">Payment successful</h2>
           <p className=" text-xs text-[#404252]">

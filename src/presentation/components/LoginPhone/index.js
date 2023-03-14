@@ -10,7 +10,7 @@ const LoginExplore = ({ children, setState }) => {
         <div onClick={() => setState("login1")} className="flex w-full">
           <FeatherIcon className=" mr-1 h-8 w-9" icon="chevron-left" />
         </div>
-        <img src={Logo} className=" mt-[-73px]" />
+        <img alt="mindcare" src={Logo} className=" mt-[-73px]" />
         <h2 className=" font-medium text-[#282A39] text-[17px] mt-[3px]">
           Please enter you phone number
         </h2>

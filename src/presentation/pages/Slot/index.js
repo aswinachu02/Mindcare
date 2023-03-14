@@ -1,23 +1,39 @@
 import React, { useState } from "react";
+import moment from "moment";
 import MobileLayout from "../../layouts/MobileLayout";
 
 import Button from "../../components/Button";
-import { Calendar } from "antd";
+import { Calendar, message } from "antd";
 import Header from "../../components/Header";
 import { useNavigate } from "react-router-dom";
+import { useAuthStore, useSessionsStore } from "../../stores";
 
 const Slot = () => {
-  const [select, setState] = useState(false);
+  const [selectedTime, setSelectedTime] = useState("09:00 AM");
+  const [selectedDate, setSelectedDate] = useState(
+    moment().format("DD MM YYYY")
+  );
+  const [, { handleAddSession }] = useSessionsStore();
+  const [{ username }] = useAuthStore();
+
   let navigate = useNavigate();
-  const planpath = () => {
-    navigate("/plan");
+  const handleBookNow = () => {
+    if (!selectedDate) return message.error("Please select a date!");
+    else if (!selectedTime) return message.error("Please select a time!");
+    else
+      return handleAddSession(username, selectedDate, selectedTime, () => {
+        message.success("Session added!");
+        navigate("/plan");
+      });
   };
+
   return (
     <MobileLayout>
       <Header>Choose Slot</Header>
       <div className="w-full  p-[25px] my-4 ">
         <header className="flex items-start">
           <img
+            alt="doctor"
             src="https://www.w3schools.com/w3css/img_avatar3.png"
             className="rounded-full h-[64px] w-[64px]"
           />
@@ -36,7 +52,11 @@ const Slot = () => {
         </p>
         <h2 className="text-[#282A39] text-sm mt-6">Choose a day</h2>
 
-        <Calendar className=" bg-[#FCFBF7] shadow-lg mt-2" fullscreen={false} />
+        <Calendar
+          onSelect={(val) => setSelectedDate(val.format("DD MM YYYY"))}
+          className=" bg-[#FCFBF7] shadow-lg mt-2"
+          fullscreen={false}
+        />
       </div>
       <div className="w-full  px-[25px] ">
         <h2 className=" text-sm text-[#282A39] font-medium">
@@ -45,24 +65,23 @@ const Slot = () => {
 
         <div className="flex flex-wrap justify-evenly text-xs my-3">
           {[
-            "9:00 AM",
+            "09:00 AM",
             "10:00 AM",
             "11:00 AM",
-            "1:00 PM",
-            "2:00 PM",
-            "3:00 PM",
+            "01:00 PM",
+            "02:00 PM",
+            "03:00 PM",
           ].map((time) => (
             <Button
-              onClick={() => setState(time)}
+              onClick={() => setSelectedTime(time)}
               className="min-w-[88px] h-[30px] my-2 "
-              type={select === time ? "solid" : "liquid"}
+              type={selectedTime === time ? "solid" : "liquid"}
             >
               {time}
             </Button>
           ))}
         </div>
       </div>
-
       <footer className="flex text-xs mt-8 mb-5">
         <Button type="liquid" className="w-full h-[48px] mr-2 ml-4">
           CANCEL
@@ -70,7 +89,7 @@ const Slot = () => {
         <Button
           type="solid"
           className="w-full h-[48px] mr-4 ml-2"
-          onClick={planpath}
+          onClick={handleBookNow}
         >
           BOOK NOW
         </Button>

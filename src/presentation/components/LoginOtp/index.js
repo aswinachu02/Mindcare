@@ -23,7 +23,7 @@ const LoginExplore = ({ setState }) => {
         <div onClick={() => setState("login2")} className="flex w-full">
           <FeatherIcon className=" mr-1 h-8 w-9" icon="chevron-left" />
         </div>
-        <img src={Logo} className=" mt-[-73px]" />
+        <img alt="logo" src={Logo} className=" mt-[-73px]" />
         <h2 className=" font-medium text-[#282A39] text-[17px] mt-[3px]">
           Verify you phone number
         </h2>

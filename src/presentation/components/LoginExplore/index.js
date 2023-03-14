@@ -8,7 +8,7 @@ const LoginExplore = ({ select, setState }) => {
   return (
     <div className="w-full  p-[25px] my-[22px]">
       <div className="flex flex-col items-center">
-        <img src={Logo} className="mt-[104px]" />
+        <img alt="mindcare" src={Logo} className="mt-[104px]" />
         <h2 className=" text-xl text-[#273E56] font-medium mt-[-30px] ml-1">
           mind<span className=" text-[#EC7E41] font-normal">care.</span>
         </h2>

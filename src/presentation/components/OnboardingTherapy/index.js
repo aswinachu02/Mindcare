@@ -15,7 +15,7 @@ const LoginExplore = ({ select, setState }) => {
             Skip
           </p>
         </div>
-        <img src={home} className="mt-[127px] w-[221px] h-[192px]" />
+        <img alt="home" src={home} className="mt-[127px] w-[221px] h-[192px]" />
         <h2 className=" text-[#273E56] text-[22px] mt-[52px]">
           Therapy Sessions
         </h2>

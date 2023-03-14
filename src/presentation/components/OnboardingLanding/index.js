@@ -15,7 +15,11 @@ const LoginExplore = ({ select, setState }) => {
             Skip
           </p>
         </div>
-        <img src={Mindcare} className="mt-[180px] w-[297px] h-[174px]" />
+        <img
+          alt="mindcare"
+          src={Mindcare}
+          className="mt-[180px] w-[297px] h-[174px]"
+        />
         <h2 className=" text-[#273E56] text-[22px] mt-[13px]">MindCare</h2>
         <p className=" text-[#5B5E68] text-sm font-light text-center w-[321px] min-h-[61px] mt-2">
           We are dedicated to helping people take care of their mental health

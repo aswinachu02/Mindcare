@@ -23,6 +23,7 @@ const ChatBox = () => {
 
           <div className="flex items-center">
             <img
+              alt="messenger"
               src={"https://www.w3schools.com/w3css/img_avatar3.png"}
               className="rounded-full h-[38px] w-[38px]"
             />
@@ -102,7 +103,7 @@ const ChatBox = () => {
               value="Message"
             />
           </div>
-          <img src={Send} className="w-[40px] h-[40px]" />
+          <img alt="send" src={Send} className="w-[40px] h-[40px]" />
         </div>
       </footer>
     </MobileLayout>

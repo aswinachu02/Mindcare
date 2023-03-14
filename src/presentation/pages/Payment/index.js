@@ -21,7 +21,7 @@ const Payment = () => {
             <p>
               12 video <span className=" text-[#5B5E68]">sessions</span>
             </p>
-            <img src={Line} className=" h-5" />
+            <img alt="line" src={Line} className=" h-5" />
             <p>
               4 week <span className="text-[#5B5E68]">chat access</span>
             </p>
@@ -46,7 +46,7 @@ const Payment = () => {
             Preferred Payment
           </h2>
           <div className="flex mx-3 mb-1 mt-2  items-center ">
-            <img src={Gpay} className="w-[24px] h-[24px] " />
+            <img alt="gapy" src={Gpay} className="w-[24px] h-[24px] " />
             <p className="text-xs ml-2 mr-4">Google Pay UPI</p>
             <Checkbox
               onClick={() => setState("Gpay1")}
@@ -54,7 +54,7 @@ const Payment = () => {
             />
           </div>
           <div className="flex mx-3 my-1  items-center ">
-            <img src={PhonePe} className="w-[24px] h-[24px] " />
+            <img alt="phonepe" src={PhonePe} className="w-[24px] h-[24px] " />
             <p className="text-xs ml-2 mr-8">PhonePe UPI</p>
             <Checkbox
               onClick={() => setState("Phonepe1")}
@@ -65,7 +65,7 @@ const Payment = () => {
         <div className=" flex flex-col">
           <h2 className=" text-sm text-[#282A39] font-normal mt-[30px]">UPI</h2>
           <div className="flex mx-3 mb-1 mt-2 items-center ">
-            <img src={Gpay} className="w-[24px] h-[24px] " />
+            <img alt="gpay" src={Gpay} className="w-[24px] h-[24px] " />
             <p className="text-xs ml-2 mr-4">Google Pay UPI</p>
             <Checkbox
               onClick={() => setState("Gpay2")}
@@ -73,7 +73,7 @@ const Payment = () => {
             />
           </div>
           <div className="flex mx-3 my-1 items-center ">
-            <img src={PhonePe} className="w-[24px] h-[24px] " />
+            <img alt="phonepe" src={PhonePe} className="w-[24px] h-[24px] " />
             <p className="text-xs ml-2 mr-8">PhonePe UPI</p>
             <Checkbox
               onClick={() => setState("Phonepe2")}

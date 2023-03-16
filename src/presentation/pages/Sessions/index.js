@@ -3,18 +3,19 @@ import MobileLayout from "../../layouts/MobileLayout";
 import SessionCard from "../../components/SessionCard";
 import Footer from "../../components/Footer";
 import { useAuthStore, useSessionsStore } from "../../stores";
-import { Row, Spin } from "antd";
+import { Empty, Row, Spin } from "antd";
 import { timestamp } from "../../utils/time";
 import moment from "moment";
 
 const Sessions = () => {
   const [sessionType, setSessionType] = useState("upcoming");
   const [{ username }] = useAuthStore();
-  const [{ loading, sessions }, { handleListSessions }] = useSessionsStore();
+  const [{ loadingSessions, sessions }, { handleListSessions }] =
+    useSessionsStore();
 
   useEffect(() => {
-    if (sessions === null) handleListSessions(username);
-  }, [sessions, username, handleListSessions]);
+    handleListSessions(username);
+  }, [username, handleListSessions]);
 
   return (
     <MobileLayout>
@@ -45,10 +46,12 @@ const Sessions = () => {
       </div>
 
       <div className="flex flex-col items-center mb-[80px]">
-        {loading ? (
+        {loadingSessions ? (
           <Row align="middle" justify="center" style={{ height: "40vh" }}>
             <Spin tip="Loading sessions" />
           </Row>
+        ) : !sessions || sessions?.length === 0 ? (
+          <Empty description="No sessions found!" />
         ) : (
           sessions
             ?.filter((item) => {

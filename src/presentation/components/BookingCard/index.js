@@ -4,14 +4,16 @@ import Star from "../../assets/star.svg";
 import Badge from "../../assets/Badge.svg";
 import Line from "../../assets/Line 7.svg";
 import { useNavigate } from "react-router-dom";
+import { capitalize } from "../../utils/string";
+import moment from "moment";
 
-const BookingCard = () => {
+const BookingCard = ({ doctor }) => {
   let navigate = useNavigate();
   const therapistpath = () => {
     navigate("/therapist");
   };
   const slotpath = () => {
-    navigate("/slot");
+    navigate(`/slot/${doctor?.username}`);
   };
   return (
     <div className="w-11/12 min-h-[250px] p-[25px] my-4 rounded-lg shadow-lg bg-[#F9F2E8]">
@@ -23,7 +25,9 @@ const BookingCard = () => {
         />
         <div className="flex-col ml-3 w-full">
           <div className="flex items-center justify-between">
-            <h2 className=" font-semibold text-base">Dane Johnson</h2>
+            <h2 className=" font-semibold text-base">
+              {capitalize(doctor?.name)}
+            </h2>
             <div className="flex w-[100px] pl-4 items-center justify-around  text-xs font-medium">
               <p className="flex items-center">
                 4.3
@@ -34,11 +38,14 @@ const BookingCard = () => {
             </div>
           </div>
           <h3 className="text-[#5B5E68] font-normal text-[11px]">
-            MA in Clinical Psychology
+            {doctor?.degree} in {doctor?.specialization}
           </h3>
           <div className="flex items-center">
             <p className=" font-medium pt-2 text-xs text-[#777A86]">
-              SESSIONS COMPLETED <span className="text-[#101A24]">65</span>
+              SESSIONS COMPLETED{" "}
+              <span className="text-[#101A24]">
+                {doctor?.bookings?.length ?? 0}
+              </span>
             </p>
             <img
               alt="badge"
@@ -58,9 +65,9 @@ const BookingCard = () => {
           <p className="px-3">Starting at</p>
         </div>
         <div className=" flex items-center justify-between mt-1 font-semibold text-xs">
-          <p>January 20 2023, 10:00 AM</p>
+          <p>{moment().add(2, "hours").format("MMMM DD YYYY, hh:00 A")}</p>
           <p className=" text-[#EC7E41] px-3 text-sm ">
-            INR <span className="text-base">199</span>
+            INR <span className="text-base">{doctor?.rate}</span>
           </p>
         </div>
       </div>

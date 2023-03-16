@@ -17,6 +17,9 @@ import Chats from "./presentation/pages/Chats";
 import ChatBox from "./presentation/pages/ChatBox";
 import Login from "./presentation/pages/Login";
 import Onboarding from "./presentation/pages/Onboarding";
+import routes from "./presentation/utils/routes";
+import AdminLogin from "./presentation/pages/Admin/Login";
+import AdminAddDoctor from "./presentation/pages/Admin/AddDoctor";
 
 const App = () => {
   return (
@@ -29,7 +32,7 @@ const App = () => {
         <Route path="/filter" element={<Filter />} />
         <Route path="/therapist" element={<Therapist />} />
         <Route path="/session" element={<SessionDetails />} />
-        <Route path="/slot" element={<Slot />} />
+        <Route path="/slot/:d_uname" element={<Slot />} />
         <Route path="/reschedule" element={<Reschedule />} />
         <Route path="/plan" element={<Plan />} />
         <Route path="/payment" element={<Payment />} />
@@ -39,6 +42,9 @@ const App = () => {
         <Route path="/chatbox" element={<ChatBox />} />
         <Route path="/login" element={<Login />} />
         <Route path="/onboarding" element={<Onboarding />} />
+
+        <Route path={routes.ADMIN_LOGIN} element={<AdminLogin />} />
+        <Route path={routes.ADMIN_ADD_DOCTOR} element={<AdminAddDoctor />} />
       </Routes>
     </Router>
   );

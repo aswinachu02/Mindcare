@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MobileLayout from "../../layouts/MobileLayout";
 import FeatherIcon from "feather-icons-react/build/FeatherIcon";
 import BookingCard from "../../components/BookingCard";
 import Header from "../../components/Header";
 import { Link } from "react-router-dom";
+import { useSessionsStore } from "../../stores";
+import { Empty, Row, Spin } from "antd";
 
 export const Booking = () => {
+  const [{ doctors, loadingDoctors }, { handleListDoctors }] =
+    useSessionsStore();
+
+  useEffect(() => {
+    handleListDoctors();
+  }, [handleListDoctors]);
+
   return (
     <MobileLayout>
       <Header>Book a new session</Header>
@@ -23,12 +32,15 @@ export const Booking = () => {
         </Link>
       </div>
       <div className="flex flex-col items-center">
-        <BookingCard />
-        <BookingCard />
-        <BookingCard />
-        <BookingCard />
-        <BookingCard />
-        <BookingCard />
+        {loadingDoctors ? (
+          <Row align="middle" justify="center" style={{ height: "40vh" }}>
+            <Spin tip="Loading doctors" />
+          </Row>
+        ) : !doctors || doctors?.length === 0 ? (
+          <Empty description="No doctors found!" />
+        ) : (
+          doctors?.map((doctor, i) => <BookingCard doctor={doctor} key={i} />)
+        )}
       </div>
     </MobileLayout>
   );

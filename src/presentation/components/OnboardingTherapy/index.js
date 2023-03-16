@@ -11,7 +11,10 @@ const LoginExplore = ({ select, setState }) => {
     <div className="w-full  p-[25px] my-[22px]">
       <div className="flex flex-col items-center">
         <div className="flex w-full justify-end items-center underline underline-offset-2">
-          <p className=" font-light text-[#273E56] text-sm" onClick={homepath}>
+          <p
+            className=" font-light text-[#273E56] text-sm cursor-pointer"
+            onClick={homepath}
+          >
             Skip
           </p>
         </div>
@@ -25,13 +28,13 @@ const LoginExplore = ({ select, setState }) => {
         </p>
         <div className=" flex items-center justify-between text-sm mt-[109px] w-full ">
           <p
-            className=" text-[#273E56] underline underline-offset-2 ml-[28px]"
+            className=" text-[#273E56] underline underline-offset-2 ml-[28px] cursor-pointer"
             onClick={() => setState("onboarding1")}
           >
             Previous
           </p>
           <p
-            className=" text-[#273E56] underline underline-offset-2 mr-[28px]"
+            className=" text-[#273E56] underline underline-offset-2 mr-[28px] cursor-pointer"
             onClick={() => setState("onboarding3")}
           >
             Next

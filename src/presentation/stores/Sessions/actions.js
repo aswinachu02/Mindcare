@@ -4,6 +4,7 @@ import { logger } from "../../../common/utils/logger";
 import {
   addDoctorBooking,
   addPatientBooking,
+  getBooking,
   listBooking,
 } from "../../../infrastructure/booking";
 import { getDoctor, listDoctors } from "../../../infrastructure/doctor";
@@ -14,24 +15,25 @@ const actions = {
   handleListSessions:
     (p_uname) =>
     async ({ setState, getState }) => {
-      const { doctors } = getState();
-      if (doctors === null) {
-        try {
+      setState({ loadingSessions: true });
+      const { sessions } = getState();
+      try {
+        if (sessions === null) {
           setState({ loadingSessions: true });
           const snapshot = await listBooking(p_uname);
           if (snapshot.exists()) {
-            const sessions = Object.values(snapshot.val())
+            const sessionsVal = Object.values(snapshot.val())
               .sort((a, b) => numericalSort(a?.stamp, b?.stamp))
               .reverse();
-            setState({ sessions });
+            setState({ sessions: sessionsVal });
           }
-        } catch (error) {
-          logger.error(error, "handleListSessions()");
-        } finally {
-          setState({ loadingSessions: false });
+        } else {
+          logger.message("Loading sessions from cache");
         }
-      } else {
-        logger.message("Loading sessions from cache");
+      } catch (error) {
+        logger.error(error, "handleListSessions()");
+      } finally {
+        setState({ loadingSessions: false });
       }
     },
 
@@ -62,11 +64,13 @@ const actions = {
     (d_uname) =>
     async ({ setState, getState }) => {
       setState({ loadingSelectedDoctor: true });
-      const { doctors } = getState();
+      const { doctors, selectedDoctor } = getState();
       try {
         const doctorExists = doctors?.find((doc) => doc?.username === d_uname);
         if (doctorExists) {
           setState({ selectedDoctor: doctorExists });
+        } else if (selectedDoctor?.username === d_uname) {
+          setState({ selectedDoctor: selectedDoctor });
         } else {
           const snapshot = await getDoctor(d_uname);
           if (snapshot.exists()) {
@@ -82,21 +86,50 @@ const actions = {
       }
     },
 
+  handleGetSession:
+    (username, sid) =>
+    async ({ setState, getState, dispatch }) => {
+      setState({ loadingSelectedSession: true });
+      const { sessions, selectedSession } = getState();
+      try {
+        const sessionExists = sessions?.find((doc) => doc?.username === sid);
+        if (sessionExists) {
+          setState({ selectedSession: sessionExists });
+          dispatch(actions.handleGetDoctor(sessionExists?.d_uname));
+        } else if (selectedSession?.username === sid) {
+          setState({ selectedSession: selectedSession });
+          dispatch(actions.handleGetDoctor(selectedSession?.d_uname));
+        } else {
+          const snapshot = await getBooking(username, sid);
+          if (snapshot.exists()) {
+            setState({ selectedSession: snapshot.val() });
+            dispatch(actions.handleGetDoctor(snapshot.val()?.d_uname));
+          } else {
+            message.error("Session not found!");
+          }
+        }
+      } catch (error) {
+        logger.error(error, "handleGetSession()");
+      } finally {
+        setState({ loadingSelectedSession: false });
+      }
+    },
+
   handleBookSession:
-    (p_uname, d_uname, selectedDate, selectedTime, onSuccess) =>
+    (sid, p_uname, d_uname, selectedDate, selectedTime, onSuccess) =>
     async ({ setState }) => {
       try {
         setState({ adding: true });
-        const sid = Date.now();
-        const date = {
+        const data = {
+          sid,
           d_uname: d_uname,
           p_uname: p_uname,
           stamp: timestamp(
             moment(`${selectedDate} ${selectedTime}`, "DD MM YYYY hh:mm A")
           ),
         };
-        await addPatientBooking(p_uname, sid, date);
-        await addDoctorBooking(d_uname, sid, date);
+        await addPatientBooking(p_uname, sid, data);
+        await addDoctorBooking(d_uname, sid, data);
         onSuccess();
       } catch (error) {
         logger.error(error, "handleAddSession()");

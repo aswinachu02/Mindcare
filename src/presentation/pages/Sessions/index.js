@@ -3,9 +3,9 @@ import MobileLayout from "../../layouts/MobileLayout";
 import SessionCard from "../../components/SessionCard";
 import Footer from "../../components/Footer";
 import { useAuthStore, useSessionsStore } from "../../stores";
-import { Empty, Row, Spin } from "antd";
 import { timestamp } from "../../utils/time";
 import moment from "moment";
+import LoadAndResult from "../../components/LoadAndResult";
 
 const Sessions = () => {
   const [sessionType, setSessionType] = useState("upcoming");
@@ -46,14 +46,13 @@ const Sessions = () => {
       </div>
 
       <div className="flex flex-col items-center mb-[80px]">
-        {loadingSessions ? (
-          <Row align="middle" justify="center" style={{ height: "40vh" }}>
-            <Spin tip="Loading sessions" />
-          </Row>
-        ) : !sessions || sessions?.length === 0 ? (
-          <Empty description="No sessions found!" />
-        ) : (
-          sessions
+        <LoadAndResult
+          loading={loadingSessions}
+          loadingText="Loading sessions..."
+          isEmpty={!sessions || sessions?.length === 0}
+          emptyText="No sessions found!"
+        >
+          {sessions
             ?.filter((item) => {
               if (sessionType === "upcoming")
                 return item?.stamp >= timestamp(moment());
@@ -63,8 +62,8 @@ const Sessions = () => {
             })
             ?.map((session, id) => (
               <SessionCard id={sessions.length - id} session={session} />
-            ))
-        )}
+            ))}
+        </LoadAndResult>
       </div>
       <Footer />
     </MobileLayout>

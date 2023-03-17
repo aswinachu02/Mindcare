@@ -3,11 +3,13 @@ import moment from "moment";
 import MobileLayout from "../../layouts/MobileLayout";
 
 import Button from "../../components/Button";
-import { Calendar, message, notification, Result, Row, Spin } from "antd";
+import { Calendar, message, notification } from "antd";
 import Header from "../../components/Header";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuthStore, useSessionsStore } from "../../stores";
 import { capitalize } from "../../utils/string";
+import LoadAndResult from "../../components/LoadAndResult";
+import routes from "../../utils/routes";
 
 const Slot = () => {
   const [selectedTime, setSelectedTime] = useState("09:00 AM");
@@ -27,7 +29,9 @@ const Slot = () => {
     if (!selectedDate) return message.error("Please select a date!");
     else if (!selectedTime) return message.error("Please select a time!");
     else {
+      const sid = Date.now();
       return handleBookSession(
+        sid,
         username,
         d_uname,
         selectedDate,
@@ -50,13 +54,12 @@ const Slot = () => {
   return (
     <MobileLayout>
       <Header>Choose Slot</Header>
-      {loadingSelectedDoctor ? (
-        <Row align="middle" justify="center" style={{ height: "40vh" }}>
-          <Spin tip="Loading doctor..." />
-        </Row>
-      ) : !selectedDoctor ? (
-        <Result status="error" title="Doctor not found!" />
-      ) : (
+      <LoadAndResult
+        loading={loadingSelectedDoctor}
+        loadingText="Loading doctor..."
+        isNotFound={!selectedDoctor}
+        notFoundText="Doctor not found!"
+      >
         <>
           <div className="w-full  p-[25px] my-4 ">
             <header className="flex items-start">
@@ -113,7 +116,11 @@ const Slot = () => {
             </div>
           </div>
           <footer className="flex text-xs mt-8 mb-5">
-            <Button type="liquid" className="w-full h-[48px] mr-2 ml-4">
+            <Button
+              type="liquid"
+              className="w-full h-[48px] mr-2 ml-4"
+              onClick={() => navigate(routes.NEW_SESSION)}
+            >
               CANCEL
             </Button>
             <Button
@@ -125,7 +132,7 @@ const Slot = () => {
             </Button>
           </footer>
         </>
-      )}
+      </LoadAndResult>
     </MobileLayout>
   );
 };

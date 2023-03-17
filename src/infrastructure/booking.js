@@ -1,9 +1,13 @@
 import { DB } from "./common";
 
-export const listBooking = (username) => DB.get(`${username}/bookings`);
+export const listBooking = (username) =>
+  DB.get(`patients/${username}/bookings`);
 
-export const addPatientBooking = (username, id, data) =>
-  DB.set(`patients/${username}/bookings/${id}`, data);
+export const getBooking = (username, sid) =>
+  DB.get(`patients/${username}/bookings/${sid}`);
 
-export const addDoctorBooking = (username, id, data) =>
-  DB.set(`doctors/${username}/bookings/${id}`, data);
+export const addPatientBooking = (username, sid, data) =>
+  DB.set(`patients/${username}/bookings/${sid}`, data);
+
+export const addDoctorBooking = (username, sid, data) =>
+  DB.set(`doctors/${username}/bookings/${sid}`, data);

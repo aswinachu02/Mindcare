@@ -11,20 +11,21 @@ import Footer from "../../components/Footer";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../../stores";
 import { capitalize } from "../../utils/string";
+import routes from "../../utils/routes";
 
 const Home = () => {
-  const [{ username }] = useAuthStore();
+  const [{ patientname }] = useAuthStore();
 
   return (
     <MobileLayout>
       <div className="flex justify-between w-auto  min-h-[240px] p-[25px] bg-[#F9F2E8]">
         <div className="flex flex-col text-xl font-medium mt-4">
           <h2>Good Morning,</h2>
-          <h2>{capitalize(username)}!</h2>
+          <h2>{capitalize(patientname)}!</h2>
           <p className=" text-xs font-light text-[#282A39] mt-2 mb-5">
             Feel like talking?
           </p>
-          <Link to={"/booking"}>
+          <Link to={routes.NEW_SESSION}>
             <Button type="solid" className="w-full text-xs font-light">
               BOOK NEW SESSION
             </Button>

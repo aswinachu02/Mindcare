@@ -1,6 +1,7 @@
 const initialState = {
   authenticating: false,
-  username: "aswin",
+  username: "akarsha",
+  patientname: "Akarsha",
 };
 
 export default initialState;

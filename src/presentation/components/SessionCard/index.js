@@ -4,6 +4,7 @@ import FeatherIcon from "feather-icons-react";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import { capitalize } from "../../utils/string";
+import routes from "../../utils/routes";
 
 const SessionCard = ({ session, id, isbooked }) => {
   let navigate = useNavigate();
@@ -11,7 +12,7 @@ const SessionCard = ({ session, id, isbooked }) => {
     navigate("/reschedule");
   };
   const sessionpath = () => {
-    navigate("/sessions");
+    navigate(routes.VIEW_SESSION(session?.sid));
   };
 
   return (

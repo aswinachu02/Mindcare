@@ -1,4 +1,5 @@
 import React from "react";
+import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "./presentation/pages/Home";
@@ -25,14 +26,17 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/home" element={<Home />} />
+        <Route path={routes.HOME} element={<Home />} />
         <Route path="/" element={<Login />} />
-        <Route path="/sessions" element={<Sessions />} />
-        <Route path="/booking" element={<Booking />} />
+        <Route path={routes.SESSIONS} element={<Sessions />} />
+        <Route path={routes.NEW_SESSION} element={<Booking />} />
         <Route path="/filter" element={<Filter />} />
-        <Route path="/therapist" element={<Therapist />} />
-        <Route path="/session" element={<SessionDetails />} />
-        <Route path="/slot/:d_uname" element={<Slot />} />
+        <Route path={routes.VIEW_DOCTOR(":d_uname")} element={<Therapist />} />
+        <Route
+          path={routes.VIEW_SESSION(":sid")}
+          element={<SessionDetails />}
+        />
+        <Route path={routes.NEW_SESSION_SLOT(":d_uname")} element={<Slot />} />
         <Route path="/reschedule" element={<Reschedule />} />
         <Route path="/plan" element={<Plan />} />
         <Route path="/payment" element={<Payment />} />
@@ -43,6 +47,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/onboarding" element={<Onboarding />} />
 
+        <Route path={routes.ADMIN} element={<AdminLogin />} />
         <Route path={routes.ADMIN_LOGIN} element={<AdminLogin />} />
         <Route path={routes.ADMIN_ADD_DOCTOR} element={<AdminAddDoctor />} />
       </Routes>

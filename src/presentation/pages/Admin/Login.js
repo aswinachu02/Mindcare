@@ -40,7 +40,9 @@ const AdminLogin = () => {
         onFinish={onFinish}
       >
         <br />
-        <h2 className="text-2xl mb-5 font-semibold text-themeColor">Login</h2>
+        <h2 className="text-2xl mb-5 font-semibold text-themeColor">
+          Admin Login
+        </h2>
         <Form.Item
           name="username"
           label="Username"

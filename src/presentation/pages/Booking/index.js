@@ -5,7 +5,7 @@ import BookingCard from "../../components/BookingCard";
 import Header from "../../components/Header";
 import { Link } from "react-router-dom";
 import { useSessionsStore } from "../../stores";
-import { Empty, Row, Spin } from "antd";
+import LoadAndResult from "../../components/LoadAndResult";
 
 export const Booking = () => {
   const [{ doctors, loadingDoctors }, { handleListDoctors }] =
@@ -32,15 +32,16 @@ export const Booking = () => {
         </Link>
       </div>
       <div className="flex flex-col items-center">
-        {loadingDoctors ? (
-          <Row align="middle" justify="center" style={{ height: "40vh" }}>
-            <Spin tip="Loading doctors" />
-          </Row>
-        ) : !doctors || doctors?.length === 0 ? (
-          <Empty description="No doctors found!" />
-        ) : (
-          doctors?.map((doctor, i) => <BookingCard doctor={doctor} key={i} />)
-        )}
+        <LoadAndResult
+          loading={loadingDoctors}
+          loadingText="Loading doctors..."
+          isEmpty={!doctors || doctors?.length === 0}
+          emptyText="No doctors found!"
+        >
+          {doctors?.map((doctor, i) => (
+            <BookingCard doctor={doctor} key={i} />
+          ))}
+        </LoadAndResult>
       </div>
     </MobileLayout>
   );

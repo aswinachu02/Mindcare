@@ -6,15 +6,11 @@ import Line from "../../assets/Line 7.svg";
 import { useNavigate } from "react-router-dom";
 import { capitalize } from "../../utils/string";
 import moment from "moment";
+import routes from "../../utils/routes";
 
 const BookingCard = ({ doctor }) => {
   let navigate = useNavigate();
-  const therapistpath = () => {
-    navigate("/therapist");
-  };
-  const slotpath = () => {
-    navigate(`/slot/${doctor?.username}`);
-  };
+
   return (
     <div className="w-11/12 min-h-[250px] p-[25px] my-4 rounded-lg shadow-lg bg-[#F9F2E8]">
       <header className="flex items-center">
@@ -72,10 +68,18 @@ const BookingCard = ({ doctor }) => {
         </div>
       </div>
       <footer className="flex text-xs mt-1">
-        <Button type="liquid" className="w-full mr-2" onClick={therapistpath}>
+        <Button
+          type="liquid"
+          className="w-full mr-2"
+          onClick={() => navigate(routes.VIEW_DOCTOR(doctor?.username))}
+        >
           VIEW PROFILE
         </Button>
-        <Button type="solid" className="w-full ml-2 " onClick={slotpath}>
+        <Button
+          type="solid"
+          className="w-full ml-2 "
+          onClick={() => navigate(routes.NEW_SESSION_SLOT(doctor?.username))}
+        >
           BOOK SESSION
         </Button>
       </footer>

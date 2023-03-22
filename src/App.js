@@ -21,6 +21,7 @@ import Onboarding from "./presentation/pages/Onboarding";
 import routes from "./presentation/utils/routes";
 import AdminLogin from "./presentation/pages/Admin/Login";
 import AdminAddDoctor from "./presentation/pages/Admin/AddDoctor";
+import VideoSession from "./presentation/pages/VideoSession";
 
 const App = () => {
   return (
@@ -46,6 +47,7 @@ const App = () => {
         <Route path="/chatbox" element={<ChatBox />} />
         <Route path="/login" element={<Login />} />
         <Route path="/onboarding" element={<Onboarding />} />
+        <Route path="/videosession" element={<VideoSession />} />
 
         <Route path={routes.ADMIN} element={<AdminLogin />} />
         <Route path={routes.ADMIN_LOGIN} element={<AdminLogin />} />

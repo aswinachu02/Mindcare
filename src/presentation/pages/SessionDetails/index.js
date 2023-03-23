@@ -35,6 +35,9 @@ const SessionDetails = () => {
   const reschedulepath = () => {
     navigate("/reschedule");
   };
+  const videopath = () => {
+    navigate("/videosession");
+  };
 
   useEffect(() => {
     if (sid) handleGetSession(username, sid);
@@ -95,7 +98,7 @@ const SessionDetails = () => {
               >
                 RESCHEDULE
               </Button>
-              <Button type="solid" className="w-full ml-2">
+              <Button type="solid" className="w-full ml-2" onClick={videopath}>
                 JOIN SESSION
               </Button>
             </footer>

@@ -9,13 +9,26 @@ import { useNavigate } from "react-router-dom";
 
 const VideoSession = () => {
   const navigate = useNavigate();
-  const videoRef = useRef(null);
+  const frontVideoRef = useRef(null);
+  const backVideoRef = useRef(null);
 
   const getVideo = () => {
     navigator.mediaDevices
-      .getUserMedia({ video: { width: 300 } })
+      .getUserMedia({ video: { width: 300, facingMode: "user" } })
       .then((stream) => {
-        let video = videoRef.current;
+        let video = frontVideoRef.current;
+        video.srcObject = stream;
+        video.play();
+      })
+      .catch((err) => {
+        console.error("error:", err);
+      });
+    navigator.mediaDevices
+      .getUserMedia({
+        video: { width: 300, facingMode: { exact: "environment" } },
+      })
+      .then((stream) => {
+        let video = backVideoRef.current;
         video.srcObject = stream;
         video.play();
       })
@@ -30,18 +43,15 @@ const VideoSession = () => {
 
   useEffect(() => {
     getVideo();
-  }, [videoRef]);
+  }, [frontVideoRef, backVideoRef]);
 
   return (
     <MobileLayout>
-      <video ref={videoRef} className="bg-black w-full h-[88vh]" />
-      <div className="fixed top-[60px] right-[24px]">
-        <img
-          alt="doctor"
-          src="https://www.w3schools.com/w3css/img_avatar3.png"
-          className="rounded-[16px] h-[130px] w-[130px]"
-        />
-      </div>
+      <video ref={backVideoRef} className="bg-black w-full h-[88vh]" />
+      <video
+        ref={frontVideoRef}
+        className="bg-[#404040] fixed top-[60px] right-[24px] rounded-[16px] w-[130px] h-[130px]"
+      />
       <div className="flex fixed bottom-0 w-full justify-evenly items-center h-[12vh] px-[26px] bg-[#F9F2E8] rounded-tl-3xl rounded-tr-3xl">
         <img
           alt="End-Call"

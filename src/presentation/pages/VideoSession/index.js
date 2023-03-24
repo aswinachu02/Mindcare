@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import MobileLayout from "../../layouts/MobileLayout";
 import Videoend from "../../assets/videoend.svg";
 import Videoon from "../../assets/videoon.svg";
@@ -9,26 +9,20 @@ import { useNavigate } from "react-router-dom";
 
 const VideoSession = () => {
   const navigate = useNavigate();
-  const frontVideoRef = useRef(null);
-  const backVideoRef = useRef(null);
+  const videoRef = useRef(null);
+  const [facingMode, setfacingMode] = useState("user");
 
   const getVideo = () => {
     navigator.mediaDevices
-      .getUserMedia({ video: { width: 300, facingMode: "user" } })
-      .then((stream) => {
-        let video = frontVideoRef.current;
-        video.srcObject = stream;
-        video.play();
-      })
-      .catch((err) => {
-        console.error("error:", err);
-      });
-    navigator.mediaDevices
       .getUserMedia({
-        video: { width: 300, facingMode: { exact: "environment" } },
+        video: {
+          width: "100vh",
+          height: "88vh",
+          facingMode: facingMode === "user" ? "user" : { exact: "environment" },
+        },
       })
       .then((stream) => {
-        let video = backVideoRef.current;
+        let video = videoRef.current;
         video.srcObject = stream;
         video.play();
       })
@@ -43,15 +37,18 @@ const VideoSession = () => {
 
   useEffect(() => {
     getVideo();
-  }, [frontVideoRef, backVideoRef]);
+  }, [videoRef]);
 
   return (
     <MobileLayout>
-      <video ref={backVideoRef} className="bg-black w-full h-[88vh]" />
-      <video
-        ref={frontVideoRef}
-        className="bg-[#404040] fixed top-[60px] right-[24px] rounded-[16px] w-[130px] h-[130px]"
-      />
+      <video ref={videoRef} className="bg-black w-full h-[88vh]" />
+      <div className="fixed top-[60px] right-[24px]">
+        <img
+          alt="doctor"
+          src="https://www.w3schools.com/w3css/img_avatar3.png"
+          className="rounded-[16px] h-[130px] w-[130px]"
+        />
+      </div>
       <div className="flex fixed bottom-0 w-full justify-evenly items-center h-[12vh] px-[26px] bg-[#F9F2E8] rounded-tl-3xl rounded-tr-3xl">
         <img
           alt="End-Call"
@@ -61,7 +58,14 @@ const VideoSession = () => {
         />
         <img alt="Video-On" src={Videoon} className=" w-[52px] h-[52px]" />
         <img alt="Mic-On" src={Micon} className=" w-[52px] h-[52px]" />
-        <img alt="Flip-Camera" src={Flip} className=" w-[52px] h-[52px]" />
+        <img
+          alt="Flip-Camera"
+          src={Flip}
+          onClick={() => {
+            setfacingMode((prev) => (prev === "user" ? "env" : "user"));
+          }}
+          className=" w-[52px] h-[52px]"
+        />
         <img alt="Minimize" src={Mini} className=" w-[52px] h-[52px]" />
       </div>
     </MobileLayout>
